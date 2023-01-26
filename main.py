@@ -1,6 +1,7 @@
 import requests
 from pprint import pp
 import json
+from time import perf_counter
 
 DOMAIN = "https://api.hh.ru/"
 """
