@@ -2,6 +2,7 @@ import requests
 from pprint import pp
 import json
 from time import perf_counter
+import logging
 
 DOMAIN = "https://api.hh.ru/"
 """
@@ -11,19 +12,23 @@ for area in regions.json()['areas']:
         print(area)
 """
 
+#logging.basicConfig(filename="test.log", level=logging.DEBUG, format="%(message)s")
+
+
 def main():
     data = {}
 
     text_for_file = "Список компаний по запросу:"
     text = ""
-    for i in range(1,25):
+    for i in range(1,2):
         params = {
             "text": "python",
-            "page": str(i),
+            #"page": str(i),
             "area": "2", #Санкт-Петербург
             "professional_role": "96" #Программист-разработчик
         }
         result = requests.get(f"{DOMAIN}vacancies", params=params)
+        print(result.json()['pages'])
         #pp(requests.get(result.json()['items'][0]['url']).json()['key_skills'])
 
         for item in result.json()['items']:
